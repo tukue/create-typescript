@@ -1,4 +1,4 @@
-import React from 'react';
+import {createContext} from 'react';
 
 
 interface UserContextType {
@@ -9,4 +9,4 @@ interface UserContextType {
   
   } 
 
-export const userContext = React.createContext<UserContextType>({name: 'user', message: 'test message'});  
+export const UserContext = createContext<UserContextType>({name: 'user', message: 'test message'});  

@@ -2,10 +2,17 @@ import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Message from './Message';
+import { UserContext } from './UserContext';  
 
 const App : React.FC= () => {
   const [userName, setUserName] = useState<string>('user')
   const [userMessage, setUserMessage ] = useState<string>('test message')
+
+
+  const contextValue = {
+    name: userName,
+    message: userMessage
+};
 
   useEffect(() => {
     setTimeout(() => {
@@ -18,7 +25,8 @@ const App : React.FC= () => {
   const user: [string, number] = ["testuser", 30]
   
   return (
-    <div className="App">
+    // Use the UserContext.Provider to wrap the Message component
+    <UserContext.Provider value={contextValue}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -27,9 +35,9 @@ const App : React.FC= () => {
         <p>
           The type of first element is {typeof user[0]} and second element is {typeof user[1]} 
         </p> 
-        <Message name={userName} message={userMessage} />
-      </header>
-    </div>
+        <Message />
+        </header>
+    </UserContext.Provider>
   );
 }
 
